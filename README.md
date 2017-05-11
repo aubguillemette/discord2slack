@@ -3,15 +3,14 @@ Send messages to Slack using Discord and vice versa.
 
 ## Install
 ```sh
-curl https://raw.githubusercontent.com/aubguillemette/discord2slack/master/discord2slack.js -o discord2slack.js
-npm install discord.js
-npm install slackbots
+git clone https://github.com/aubguillemette/discord2slack.git && cd discord2slack
+npm install
 # Configure your stuff (see Config section)
-node discord2slack.js
+npm start
 ```
 
 ## Config
-You have to set the following values in discord2slack.js (or main.js if you cloned the repo)
+You have to set the following values in discord2slack.js
 ```javascript
 const DISCORD_TOKEN     = '';
 const DISCORD_CHANNELID = '';
@@ -38,7 +37,7 @@ I've included instructions in the source code, I'll put them here too.
 8. Copy your Channel ID and paste it in the conf. section of the source code.
 
 #### How to configure a Slack bot
-1. Go here (but replace "YOUR_SERVER" ine the URL): [https://YOUR_SERVER.slack.com/apps/manage/custom-integrations](https://YOUR_SERVER.slack.com/apps/manage/custom-integrations)
+1. Go here (but replace "YOUR_SERVER" in the URL): [https://YOUR_SERVER.slack.com/apps/manage/custom-integrations](https://YOUR_SERVER.slack.com/apps/manage/custom-integrations)
 2. Click on Bots
 3. Click on Add Integration
 4. Name your bot, copy the Token and paste it in the conf. section of the source code.
@@ -47,4 +46,3 @@ I've included instructions in the source code, I'll put them here too.
 
 ## TODO
 - Add support for DMs
-- Add support for file/image upload/exchange
