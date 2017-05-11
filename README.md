@@ -38,9 +38,12 @@ I've included instructions in the source code, I'll put them here too.
 8. Copy your Channel ID and paste it in the conf. section of the source code.
 
 #### How to configure a Slack bot
-1. Go here: [https://YOUR_SERVER.slack.com/apps/manage/custom-integrations](https://YOUR_SERVER.slack.com/apps/manage/custom-integrations)
+1. Go here (but replace "YOUR_SERVER" ine the URL): [https://YOUR_SERVER.slack.com/apps/manage/custom-integrations](https://YOUR_SERVER.slack.com/apps/manage/custom-integrations)
 2. Click on Bots
 3. Click on Add Integration
 4. Name your bot, copy the Token and paste it in the conf. section of the source code.
 5. Invite the bot to the wanted channel (/invite @my-l33t-bot)
 6. Copy the channel name in the conf. section of the source code.
+
+## TODO
+- Add support for file/image upload/exchange
