@@ -3,7 +3,7 @@ Send messages to Slack using Discord and vice versa.
 
 ## Install
 ```sh
-curl https://raw.githubusercontent.com/aubguillemette/discord2slack/master/main.js -o discord2slack.js
+curl https://raw.githubusercontent.com/aubguillemette/discord2slack/master/discord2slack.js -o discord2slack.js
 npm install discord.js
 npm install slackbots
 # Configure your stuff (see Config section)
