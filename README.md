@@ -46,4 +46,5 @@ I've included instructions in the source code, I'll put them here too.
 6. Copy the channel name in the conf. section of the source code.
 
 ## TODO
+- Add support for DMs
 - Add support for file/image upload/exchange
