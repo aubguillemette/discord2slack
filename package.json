@@ -2,7 +2,7 @@
   "name": "discord2slack",
   "version": "0.1",
   "description": "Send messages from Discord to Slack or from Slack to Discord",
-  "main": "main.js",
+  "main": "discord2slack.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
