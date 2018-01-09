@@ -12,16 +12,18 @@ npm start
 ## Config
 You have to set the following values in discord2slack.js
 ```javascript
-const DISCORD_TOKEN     = '';
-const DISCORD_CHANNELID = '';
-const SLACK_TOKEN       = '';
-const SLACK_CHANNEL     = '';
+const DISCORD_TOKEN         = '';
+const DISCORD_CHANNELID     = '';
+const SLACK_TOKEN           = '';
+const SLACK_CHANNEL         = '';
+const SLACK_CHANNEL_PRIVATE = false;
 ```
 ...where
 - `DISCORD_TOKEN` is your Discord bot token
 - `DISCORD_CHANNELID` is the ID of your Discord channel
 - `SLACK_TOKEN` is your Slack bot token
 - `SLACK_CHANNEL` is the name of your Slack channel
+- `SLACK_CHANNEL_PRIVATE` represents whether or not your Slack channel is private
 
 ## How does one create Discord and Slack bots?
 I've included instructions in the source code, I'll put them here too.
@@ -37,12 +39,13 @@ I've included instructions in the source code, I'll put them here too.
 8. Copy your Channel ID and paste it in the conf. section of the source code.
 
 #### How to configure a Slack bot
-1. Go here (but replace "YOUR_SERVER" in the URL): [https://YOUR_SERVER.slack.com/apps/manage/custom-integrations](https://YOUR_SERVER.slack.com/apps/manage/custom-integrations)
-2. Click on Bots
-3. Click on Add Integration
-4. Name your bot, copy the Token and paste it in the conf. section of the source code.
-5. Invite the bot to the wanted channel (/invite @my-l33t-bot)
-6. Copy the channel name in the conf. section of the source code.
+1. Go to https://my.slack.com/services/new/bot
+2. Configure the name of the bot
+3. Copy-Paste the Token into the conf. section of the source code and save changes.
+4. Invite the bot to the desired channel (/invite @my-l33t-bot)
+5. Copy the channel name in the conf. section of the source code.
+6. If the channel is private, set SLACK_CHANNEL_PRIVATE to true.
 
 ## TODO
 - Add support for DMs
+- Add support for multiple channels
