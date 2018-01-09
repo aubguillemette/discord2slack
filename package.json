@@ -1,6 +1,6 @@
 {
   "name": "discord2slack",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Send messages from Discord to Slack or from Slack to Discord",
   "main": "discord2slack.js",
   "scripts": {

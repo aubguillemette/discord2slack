@@ -20,10 +20,11 @@
 // -----------------------------Configurable section-----------------------------
 const DEBUG = true;
 
-const DISCORD_TOKEN     = '';
-const DISCORD_CHANNELID = '';
-const SLACK_TOKEN       = '';
-const SLACK_CHANNEL     = '';
+const DISCORD_TOKEN         = '';
+const DISCORD_CHANNELID     = '';
+const SLACK_TOKEN           = '';
+const SLACK_CHANNEL         = '';
+const SLACK_CHANNEL_PRIVATE = false;
 // ------------------------------------------------------------------------------
 
 if (DISCORD_TOKEN     === '' ||
@@ -71,8 +72,11 @@ discord_client.on('message', function(message) {
 			attachments.forEach(a => { content += "\n" + a.url; });	
 		}
 		debug("Discord --> " + message.author.username + ": " + content);
-		slack_client.postMessageToChannel(SLACK_CHANNEL, message.author.username + ": " + content);
-		
+		if (SLACK_CHANNEL_PRIVATE) {
+			slack_client.postMessageToGroup(SLACK_CHANNEL, message.author.username + ": " + content);
+		} else {
+			slack_client.postMessageToChannel(SLACK_CHANNEL, message.author.username + ": " + content);
+		}
 	}
 });
 
