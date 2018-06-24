@@ -6,7 +6,7 @@
 //    https://discordapp.com/oauth2/authorize?client_id=YOUR_CLIENT_ID_HERE&scope=bot&permissions=3072
 // 5: Choose the server you want to give your bot access to and click OK (or wtv the button is named)
 // 6: Go on Discord and give permission to your bot to read and write msgs
-// 7: Copy Channel ID and paste it in the conf. section below.
+// 7: Copy Channel ID or Channel Name and paste it in the conf. section below.
 
 // ----------------------- How to configure a Slack bot: ------------------------
 // 1: Go to https://YOUR_SERVER.slack.com/apps/manage/custom-integrations
@@ -21,16 +21,22 @@
 const DEBUG = true;
 
 const DISCORD_TOKEN         = '';
+const DISCORD_CHANNEL       = '';
 const DISCORD_CHANNELID     = '';
 const SLACK_TOKEN           = '';
 const SLACK_CHANNEL         = '';
 const SLACK_CHANNEL_PRIVATE = false;
 // ------------------------------------------------------------------------------
+var discord_token_not_set = DISCORD_TOKEN === '';
+var discord_channel_not_set = DISCORD_CHANNEL === '' && DISCORD_CHANNELID === '';
+var slack_token_not_set = SLACK_TOKEN === "";
+var slack_channel_not_set = SLACK_CHANNEL === "";
 
-if (DISCORD_TOKEN     === '' ||
-    DISCORD_CHANNELID === '' ||
-    SLACK_TOKEN       === '' ||
-    SLACK_CHANNEL     === '') {
+var discord_config_invalid = discord_token_not_set || discord_channel_not_set;
+var slack_config_invalid = slack_token_not_set || slack_channel_not_set;
+
+if (discord_config_invalid || slack_config_invalid) {
+	console.log ((discord_config_invalid ? "Discord config" : "Slack config") + " is invalid");
 	console.log("You need to configure your Discord and Slack tokens and channels" +
 	            "in the file discord2slack.js. It's right in the header.");
 	process.exit(1);
@@ -49,7 +55,19 @@ function debug(msg) { if (DEBUG) { console.log(msg); } }
 
 discord_client.on('ready', function(){
 	//Finding the right channel where to send the messages
-	discord_channel = discord_client.channels.findAll("id", DISCORD_CHANNELID)[0];
+	var param = DISCORD_CHANNEL !== "" ? "name" : "id";
+	var value = DISCORD_CHANNEL !== "" ? DISCORD_CHANNEL : DISCORD_CHANNELID;
+	var potential_channels = discord_client.channels.findAll(param, value);
+	if (potential_channels.length === 0) {
+		console.log("Error: No Discord channels with " + param + " " + value + " found.");
+		process.exit(1);
+	}
+	if (potential_channels.length > 1) {
+		console.log("Warning: More than 1 Discord channel with " + param + " " + value + " found.");
+		console.log("Defaulting to first one found");
+	}
+
+	discord_channel = potential_channels[0];
 	console.log("Discord connected");
 });
 
@@ -61,7 +79,7 @@ slack_client.on('start', function() {
 discord_client.on('message', function(message) {
 	//Check if message is from the discord channel configured above
 	//(Thanks athyk)
-	if (message.channel.id != DISCORD_CHANNELID) { return; }
+	if (message.channel.id !== DISCORD_CHANNELID && message.channel.name !== DISCORD_CHANNEL) { return; }
 	//Avoiding re-sending a message we just received from Slack
 	//(event gets triggered even if it's a msg *we* sent to the chat)
 	if (message.author.username != discord_client.user.username)
