@@ -27,6 +27,8 @@ const SLACK_TOKEN           = '';
 const SLACK_CHANNEL         = '';
 const SLACK_CHANNEL_PRIVATE = false;
 // ------------------------------------------------------------------------------
+
+//Check if config is valid
 var discord_token_not_set = DISCORD_TOKEN === '';
 var discord_channel_not_set = DISCORD_CHANNEL === '' && DISCORD_CHANNELID === '';
 var slack_token_not_set = SLACK_TOKEN === "";
@@ -42,6 +44,7 @@ if (discord_config_invalid || slack_config_invalid) {
 	process.exit(1);
 }
 
+//Configure stuff
 const Discord = require('discord.js');
 const discord_client = new Discord.Client();
 const SlackBot = require('slackbots');
@@ -49,6 +52,7 @@ const slack_client = new SlackBot({token: SLACK_TOKEN, name: 'discord-connector'
 
 var discord_channel;
 
+//Debug me plenty
 function debug(msg) { if (DEBUG) { console.log(msg); } }
 
 //Let's configure events:
@@ -67,6 +71,7 @@ discord_client.on('ready', function(){
 		console.log("Defaulting to first one found");
 	}
 
+	//Channel found
 	discord_channel = potential_channels[0];
 	console.log("Discord connected");
 });
