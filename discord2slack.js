@@ -43,9 +43,7 @@ const slack_client = new SlackBot({token: SLACK_TOKEN, name: 'discord-connector'
 
 var discord_channel;
 
-function debug(msg) {
-	if (DEBUG) { console.log(msg); }
-}
+function debug(msg) { if (DEBUG) { console.log(msg); } }
 
 //Let's configure events:
 
@@ -61,6 +59,9 @@ slack_client.on('start', function() {
 
 //Redirect Discord messages to Slack
 discord_client.on('message', function(message) {
+	//Check if message is from the discord channel configured above
+	//(Thanks athyk)
+	if (message.channel.id != DISCORD_CHANNELID) { return; }
 	//Avoiding re-sending a message we just received from Slack
 	//(event gets triggered even if it's a msg *we* sent to the chat)
 	if (message.author.username != discord_client.user.username)
