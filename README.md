@@ -1,4 +1,7 @@
-# discord2slack
+# discord2slack (now unmaintained)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+You should take a look at [42wim/matterbridge](https://github.com/42wim/matterbridge) instead. If you still want to use this project, feel free to do so, but I don't intend to continue development on this. Thanks for your interest!
+
 Send messages to Slack using Discord and vice versa.
 
 Tested with Node v9.9.0.
@@ -15,7 +18,7 @@ npm start
 You have to set the following values in discord2slack.js
 ```javascript
 const DISCORD_TOKEN         = '';
-const DISCORD_CHANNEL     = '';
+const DISCORD_CHANNEL       = '';
 const DISCORD_CHANNELID     = '';
 const SLACK_TOKEN           = '';
 const SLACK_CHANNEL         = '';
